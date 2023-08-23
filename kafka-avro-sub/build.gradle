@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group 'org.kurosz'
+version '1.0-SNAPSHOT'
+
+repositories {
+    gradlePluginPortal()
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url = uri("https://packages.confluent.io/maven")
+    }
+}
+
+dependencies {
+    implementation project(':avro-models')
+//    implementation 'com.kurosz.kafka:models:1.0-SNAPSHOT'
+
+    implementation 'org.springframework.kafka:spring-kafka:3.0.4'
+
+    implementation 'org.springframework.boot:spring-boot-starter:3.1.2'
+
+    implementation 'io.confluent:kafka-avro-serializer:5.3.0'
+}
+
+
+test {
+    useJUnitPlatform()
+}

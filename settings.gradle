@@ -1,0 +1,5 @@
+rootProject.name = 'kafka-samples'
+include 'kafka-avro-pub'
+include 'kafka-avro-sub'
+include 'avro-models'
+

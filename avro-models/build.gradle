@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id("com.github.davidmc24.gradle.plugin.avro") version "1.4.0"
+    id 'maven-publish'
+
+}
+
+group 'com.kurosz.kafka'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+avro {
+    createSetters = true
+    createOptionalGetters = false
+    gettersReturnOptional = false
+    optionalGettersForNullableFieldsOnly = false
+    fieldVisibility = "PUBLIC"
+    outputCharacterEncoding = "UTF-8"
+    stringType = "String"
+    templateDirectory = null
+    enableDecimalLogicalType = true
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = group
+            artifactId = "models"
+            version = version
+
+            from components.java
+        }
+    }
+}
+
+dependencies {
+    implementation 'org.apache.avro:avro:1.11.0'
+
+}
+
+test {
+    useJUnitPlatform()
+}
